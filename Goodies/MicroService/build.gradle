@@ -1,0 +1,31 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+version = '1.0'
+jar {
+	manifest {
+		attributes 'Implementation-Title': 'MicroService',
+		'Implementation-Version': version
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+// http://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server
+dependencies {
+	compile 'org.eclipse.jetty:jetty-server:9.3.3.v20150827',
+		'org.eclipse.jetty:jetty-servlet:9.3.3.v20150827',
+		'org.eclipse.jetty:jetty-util:9.3.3.v20150827',
+		'com.sun.jersey:jersey-servlet:1.19'
+
+}
+
+uploadArchives {
+	repositories {
+		flatDir {
+			dirs 'repos'
+		}
+	}
+}
