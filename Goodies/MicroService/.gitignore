@@ -1,0 +1,5 @@
+
+# Gradle temporary and build directories
+.gradle
+build
+
