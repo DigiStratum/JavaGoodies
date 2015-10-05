@@ -1,0 +1,26 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+version = '1.0'
+jar {
+	manifest {
+		attributes 'Implementation-Title': 'Configurator',
+		'Implementation-Version': version
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+// http://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server
+dependencies {
+}
+
+uploadArchives {
+	repositories {
+		flatDir {
+			dirs 'repos'
+		}
+	}
+}
