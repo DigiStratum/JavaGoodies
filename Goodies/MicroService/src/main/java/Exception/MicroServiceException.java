@@ -1,4 +1,4 @@
-package net.javagoodies.MicroService.Exception;
+package net.javagoodies.MicroService;
 
 /**
  * Any exception from a MicroService starts here
