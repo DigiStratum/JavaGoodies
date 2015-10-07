@@ -1,6 +1,6 @@
 package net.javagoodies.MicroService;
 
-import net.javagoodies.MicroService.Exception.MicroServiceException;
+import net.javagoodies.MicroService.MicroServiceException;
 
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
@@ -14,16 +14,33 @@ import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import com.sun.jersey.spi.container.servlet.ServletContainer;
 
 /**
- * A MicroService that uses Jetty & Jersey to host REST API's
- *
- * @todo Consider dependency injection for logging and monitoring services
+ * Default implementation of RestServuceIfc interface (see Ifc for additional notes)
  */
-public class RestService extends MicroService {
+public class RestService extends MicroService implements RestServiceIfc {
 
+	/**
+	 *
+	 */
 	protected Server server;
+
+	/**
+	 *
+	 */
 	protected String resourcePackageName;
+
+	/**
+	 *
+	 */
 	protected int port;
+
+	/**
+	 *
+	 */
 	protected String contextPath;
+
+	/**
+	 *
+	 */
 	protected int threadPoolSize;
 
 	/**
@@ -47,23 +64,10 @@ public class RestService extends MicroService {
 		injectDependencies(new Server(queuedThreadPool));
 	}
 
-	/**
-	 * Depenency Injector
-	 *
-	 * @param server Jetty Server instance that we're going to use
-	 *
-	 * @todo See if there is a way to use @Inject notation with this; we want to be able to make
-	 * our own but replace it with a mock if necessary so that the caller doesn't have to do all
-	 * the work of setting up the Server instance as seen in the run() method below - that's the
-	 * whole point of this class!
-	 */
 	public void injectDependencies(Server server) {
 		this.server = server;
 	}
 
-	/**
-	 * Service runner
-	 */
 	public void run() throws MicroServiceException {
 
 		// Check our declared settings
